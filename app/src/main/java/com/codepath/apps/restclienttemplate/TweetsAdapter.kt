@@ -8,6 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codepath.apps.restclienttemplate.models.Tweet
+import com.codepath.apps.restclienttemplate.models.getTimeDifference
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class TweetsAdapter (val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<TweetsAdapter.ViewHolder>(){
 
@@ -25,6 +30,8 @@ class TweetsAdapter (val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<Tweets
 
         holder.tvUserName.text = tweet.user?.name
         holder.tvTweetBody.text = tweet.body
+//        val something = getTimeDifference(tweet.createdAt)
+        holder.tvTime.text = "2m"
 
         Glide.with(holder.itemView).load(tweet.user?.publicImageUrl).into(holder.ivProfileImage)
     }
@@ -47,5 +54,6 @@ class TweetsAdapter (val tweets: ArrayList<Tweet>) : RecyclerView.Adapter<Tweets
         val ivProfileImage = itemView.findViewById<ImageView>(R.id.ivProfileImage)
         val tvUserName = itemView.findViewById<TextView>(R.id.tvUsername)
         val tvTweetBody = itemView.findViewById<TextView>(R.id.tvTweetBody)
+        val tvTime = itemView.findViewById<TextView>(R.id.time)
     }
 }
